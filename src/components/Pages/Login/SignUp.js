@@ -71,14 +71,19 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     // console.log(data);
+
+    const DateOfBirth = data.date;
+    const Gander = data.gender;
     const email = data.userEmail;
     const displayName = data.userName;
     const password = data.password;
     const confirmPassword = data.confirmPassword;
     const user = {
       email,
-      user: data,
+      DateOfBirth,
+      Gander,
       photoURL: imageUrl,
+      displayName,
     };
     if (password === confirmPassword) {
       await createUserWithEmailAndPassword(email, password);

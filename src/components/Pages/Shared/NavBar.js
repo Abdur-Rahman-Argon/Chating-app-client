@@ -60,7 +60,7 @@ const NavBar = () => {
         </div>
 
         {/* <!-- Page content here --> */}
-        <div>
+        <div className=" py-5">
           <Outlet />
         </div>
       </div>
