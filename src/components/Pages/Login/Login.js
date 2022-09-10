@@ -21,13 +21,13 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // let from = location.state?.from?.pathname || "/";
 
-  if (user) {
-    navigate(from, { replace: true });
-  }
+  // if (user) {
+  //   navigate(from, { replace: true });
+  // }
 
   if ((loading, LLoading)) {
     return;
@@ -138,7 +138,7 @@ const Login = () => {
         <p>
           Not Register Yet?
           <Link
-            to="/signup"
+            to="/signUp"
             className=" my-3 font-bold mx-1 text-success cursor-pointer"
           >
             Register Now

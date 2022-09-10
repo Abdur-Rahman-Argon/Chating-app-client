@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import profile from "./../../../Images/149071.png";
 import {
   useAuthState,
@@ -13,11 +13,11 @@ import auth from "./../../../firebase.init";
 const SignUp = () => {
   const [imgUrl, setImgUrl] = useState(profile);
   const [imageUrl, setImageUrl] = useState();
-  const [fromData, setFromData] = useState();
+  // const [fromData, setFromData] = useState();
   const [Name, setName] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
-  const [birthDate, setBirthDate] = useState(false);
   const [gender, setGender] = useState(false);
+  const [passError, setPassError] = useState(false);
   const [passFocus, setPassFocus] = useState(false);
   const [passCFocus, setPassCFocus] = useState(false);
 
@@ -51,79 +51,60 @@ const SignUp = () => {
     const [file] = e.target.files;
     setImgUrl(URL.createObjectURL(file));
 
-    const image = file;
-    console.log(image);
+    // const image = file;
+    // console.log(image);
     const formData = new FormData();
-    formData.append("image", image);
-    setFromData(formData);
+    formData.append("image", file);
+    // setFromData(formData);
+
+    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("image", result);
+        setImageUrl(result.data.display_url);
+      });
   };
 
-  const date = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-  ];
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const year = [
-    2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012,
-    2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000,
-    1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990, 1989, 1988,
-    1987, 1986, 1985, 1984, 1983, 1982, 1981, 1980, 1979, 1978, 1977, 1976,
-    1975, 1974, 1973, 1972, 1971,
-  ];
-
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const email = data.userEmail;
     const displayName = data.userName;
     const password = data.password;
-    await createUserWithEmailAndPassword(email, password);
+    const confirmPassword = data.confirmPassword;
+    const user = {
+      email,
+      user: data,
+      photoURL: imageUrl,
+    };
+    if (password === confirmPassword) {
+      await createUserWithEmailAndPassword(email, password);
 
-    // const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+      if (CrUser) {
+        updateProfile({
+          displayName: displayName,
+          photoURL: imageUrl,
+        });
 
-    // fetch(url, {
-    //   method: "POST",
-    //   body: fromData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     console.log("image", result);
-    //     setImageUrl(result.data.display_url);
-
-    //     const user = {
-    //       email,
-    //       displayName,
-    //       photoURL: result.data.display_url,
-    //     };
-
-    //     if (result.data.display_url) {
-    //       updateProfile({
-    //         displayName: displayName,
-    //         photoURL: result.data.display_url,
-    //       });
-
-    //       fetch(`http://localhost:5000/user/${email}`, {
-    //         method: "PUT",
-    //         headers: {
-    //           "content-type": "application/json",
-    //         },
-    //         body: JSON.stringify(user),
-    //       });
-    //     }
-    //   });
+        fetch(`http://localhost:5000/users/${email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            setPassError("");
+          });
+      }
+    } else {
+      setPassError("Password & Confirm Password Don't Matched");
+    }
   };
 
   return (
@@ -189,10 +170,7 @@ const SignUp = () => {
                   errors.userEmail?.type ? "border-red-600" : "border-gray-400"
                 }`}
               />
-              {/* <p className=" text-base font-[600] text-red-600">
-                  {errors.password?.type === "required" &&
-                    "password is required"}
-                </p> */}
+
               <div
                 class={`${
                   errors.userEmail?.type ? "text-red-600" : "border-gray-400"
@@ -346,6 +324,10 @@ const SignUp = () => {
 
           <div class="my-3 text-right font-medium text-gray-400"></div>
 
+          <p className=" text-base font-[600] text-red-600">
+            {passError && passError}
+          </p>
+
           <div>
             <input
               type="submit"
@@ -362,7 +344,7 @@ const SignUp = () => {
               to="/login"
               className=" my-3 font-bold mx-1 text-primary cursor-pointer"
             >
-              Login Now
+              Login Now?
             </Link>
           </p>
         </div>
