@@ -1,51 +1,74 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, Outlet } from "react-router-dom";
+import auth from "../../../firebase.init";
+import pic from "./../../../Images/149071.png";
 
 const NavBar = () => {
+  const [user, loading] = useAuthState(auth);
+
+  const logout = () => {
+    signOut(auth);
+  };
   const menu = (
     <>
       <li>
-        <a href="/profile">
+        <Link to="/my-profile" className=" p-0">
           <img
-            src="https://scontent.fdac4-1.fna.fbcdn.net/v/t39.30808-6/297237556_131844519546545_4846200459611462752_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEaqOMwCGjfbpWt5hYOV6SutuMEbdhysk624wRt2HKyTt-a4Q28axIcP1dO1AcSsAat1Z08v-EXjutePspZ_I_Z&_nc_ohc=_YZib5hj9fUAX_Bdgxd&_nc_zt=23&_nc_ht=scontent.fdac4-1.fna&oh=00_AT_7Ye9juVoCKDqBck1k0idbGOPTEQvIg3fOZ6BY3Ia9Zg&oe=6321BE49"
+            src={user?.photoURL || pic}
             alt=""
-            className=" w-10 rounded-full border-[1px] "
+            className=" w-6 md:w-10 rounded-full border-[1px] mx-auto "
           />
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="/">
+        <Link to="/" className=" p-2 sm:p-4">
           <i class="fa-solid fa-house"></i>
-        </a>
+        </Link>
       </li>
 
       {/* <li>
-        <a href="/">
-          <i class="fa-solid fa-user"></i>
-        </a>
+         <Link to="/"  className=" p-2 sm:p-4">
+         <i class="fa-solid fa-user-group"> </i> 
+        </Link>
       </li> */}
 
       <li>
-        <a href="/users">
-          <i class="fa-solid fa-user-group"></i>
-        </a>
-      </li>
-      <li>
-        <a href="/">
-          <i class="fa-solid fa-users"></i>
-        </a>
-      </li>
-      <li>
-        <a href="/">
-          <i class="fa-solid fa-message"></i>
-        </a>
+        <Link to="/all-users" className=" p-2 sm:p-4">
+          <i class="fa-solid fa-user"></i>
+        </Link>
       </li>
 
       <li>
-        <a href="/">
-          <i class="fa-solid fa-heart"></i>
-        </a>
+        <Link to="/" className=" p-2 sm:p-4">
+          <i class="fa-solid fa-bell"></i>
+        </Link>
       </li>
+
+      <li>
+        <Link to="/groupMessages" className=" p-2 sm:p-4">
+          <i class="fa-solid fa-users"></i>
+        </Link>
+      </li>
+      <li>
+        <Link to="/messages" className=" p-2 sm:p-4">
+          <i class="fa-solid fa-message"></i>
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/lovePost/" className=" p-2 sm:p-4">
+          <i class="fa-solid fa-heart"></i>
+        </Link>
+      </li>
+      {user && (
+        <li>
+          <button onClick={logout} className=" cursor-pointer p-2 md:p-4">
+            <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+          </button>
+        </li>
+      )}
     </>
   );
 
@@ -54,19 +77,21 @@ const NavBar = () => {
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <div class="flex-none lg:hidden block bg-gray-400 ">
-          <ul class="menu menu-horizontal w-full justify-center items-center  md:text-2xl gap-1 md:gap-5">
+          <ul class="menu menu-horizontal w-full justify-center items-center text-center text-sm  md:text-2xl gap-2 md:gap-5">
             {menu}
           </ul>
         </div>
 
         {/* <!-- Page content here --> */}
-        <div className=" py-5">
-          <Outlet />
+        <div className=" flex justify-around items-start gap-0">
+          <div className=" flex-1">
+            <Outlet />
+          </div>
         </div>
       </div>
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-full lg:w-32 bg-gray-400  text-2xl gap-1">
+        <ul class="menu p-4 overflow-y-auto w-full lg:w-32 bg-gray-400  text-2xl text-center gap-1">
           {menu}
         </ul>
       </div>

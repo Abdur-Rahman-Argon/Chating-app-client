@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profile from "./../../../Images/149071.png";
 import {
   useAuthState,
@@ -33,13 +33,13 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
-  // if (user) {
-  //   navigate(from, { replace: true });
-  // }
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   if ((loading, CLoading)) {
     return;
@@ -85,30 +85,27 @@ const SignUp = () => {
       photoURL: imageUrl,
       displayName,
     };
+
     if (password === confirmPassword) {
       await createUserWithEmailAndPassword(email, password);
 
-      if (CrUser) {
-        updateProfile({
-          displayName: displayName,
-          photoURL: imageUrl,
-        });
+      await updateProfile({
+        displayName: displayName,
+        photoURL: imageUrl,
+      });
 
-        fetch(`http://localhost:5000/users/${email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
-          .then((res) => res.json())
-          .then((result) => {
-            console.log(result);
-            setPassError("");
-          });
-      }
-    } else {
-      setPassError("Password & Confirm Password Don't Matched");
+      await fetch(`https://ancient-eyrie-83116.herokuapp.com/users/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          setPassError("");
+        });
     }
   };
 

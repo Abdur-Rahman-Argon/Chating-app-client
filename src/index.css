@@ -15,3 +15,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.h50 {
+  height: 25%;
+  overflow-y: scroll;
+}
+.h100 {
+  height: 85%;
+  overflow-y: scroll;
+}
+.h70 {
+  height: 72%;
+  overflow-y: scroll;
+}

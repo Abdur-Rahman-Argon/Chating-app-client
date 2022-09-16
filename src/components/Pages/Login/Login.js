@@ -21,13 +21,13 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
-  // if (user) {
-  //   navigate(from, { replace: true });
-  // }
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   if ((loading, LLoading)) {
     return;
