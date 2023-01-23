@@ -7,7 +7,7 @@ const useUserData = ({ userId }) => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`https://ancient-eyrie-83116.herokuapp.com/viewUser/${userId}`)
+      fetch(`${process.env.REACT_APP_PRO_URL}/viewUser/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           setUserData(data);

@@ -7,16 +7,13 @@ const UpPersonal = ({ myInfo, setUpPersonal }) => {
 
   const updateRelationship = (e) => {
     e.preventDefault();
-    fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/relationship/${myInfo._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ relationship: relation }),
-      }
-    )
+    fetch(`${process.env.REACT_APP_PRO_URL}/relationship/${myInfo._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ relationship: relation }),
+    })
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

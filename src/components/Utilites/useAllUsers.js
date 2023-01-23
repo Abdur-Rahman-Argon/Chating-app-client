@@ -4,7 +4,7 @@ const useAllUsers = () => {
   const [users, setUsers] = useState();
 
   useEffect(() => {
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/users`)
+    fetch(`${process.env.REACT_APP_PRO_URL}/users`)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);

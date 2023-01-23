@@ -41,7 +41,7 @@ const Blog = ({ post, refetch }) => {
       photoURL: user.photoURL,
       likes: "Loved",
     };
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/likeAdd/${post?._id}`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/likeAdd/${post?._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -65,7 +65,7 @@ const Blog = ({ post, refetch }) => {
       photoURL: user.photoURL,
       Comment: e.target.talk.value,
     };
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/commentAdd/${post?._id}`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/commentAdd/${post?._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

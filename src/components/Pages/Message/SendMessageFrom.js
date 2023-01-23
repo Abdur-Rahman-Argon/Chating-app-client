@@ -30,7 +30,7 @@ const SendMessageFrom = ({ conversationId }) => {
       sendTime,
     };
 
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/createMessage`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/createMessage`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -17,9 +17,9 @@ const ProfileBlogs = () => {
     error,
     refetch,
   } = useQuery("MyPost", () =>
-    fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/MyPost/${user?.email}`
-    ).then((res) => res.json())
+    fetch(`${process.env.REACT_APP_PRO_URL}/MyPost/${user?.email}`).then(
+      (res) => res.json()
+    )
   );
 
   if (loading || isLoading) {

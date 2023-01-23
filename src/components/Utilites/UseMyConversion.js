@@ -11,9 +11,7 @@ const UseMyConversion = () => {
   const [myData] = useMyInformation();
 
   useEffect(() => {
-    fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/getConversation/${myData?._id}`
-    )
+    fetch(`${process.env.REACT_APP_PRO_URL}/getConversation/${myData?._id}`)
       .then((res) => res.json())
       .then((data) => {
         setMyConversion(data);

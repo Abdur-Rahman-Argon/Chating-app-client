@@ -9,7 +9,7 @@ const UpProfile = ({ myInfo, setUpProfile }) => {
   const [bio, setBio] = useState(myInfo?.Heading?.profileBio);
 
   const saveData = () => {
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/Heading/${myInfo._id}`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/Heading/${myInfo._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

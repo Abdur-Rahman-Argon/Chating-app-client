@@ -30,7 +30,7 @@ const SendGroupMessage = ({ conversationId }) => {
       sendTime,
     };
 
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/createGroupMessage`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/createGroupMessage`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

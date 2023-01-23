@@ -27,16 +27,13 @@ const CreateNewConversation = ({ setOpen }) => {
       setErr("Please set your Group name");
     } else {
       //   console.log(group);
-      fetch(
-        `https://ancient-eyrie-83116.herokuapp.com/createGroupConversation`,
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(group),
-        }
-      )
+      fetch(`${process.env.REACT_APP_PRO_URL}/createGroupConversation`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(group),
+      })
         .then((res) => res.json())
         .then((result) => {
           // console.log(result);

@@ -21,7 +21,7 @@ const Messages = () => {
             <div>
               <h1 className=" text-sm md:text-lg lg:text-xl">Messages</h1>
             </div>
-            {/* https://ancient-eyrie-83116.herokuapp.com/ */}
+            {/* `${process.env.REACT_APP_PRO_URL}/ */}
 
             <div className=" text-sm">
               <label for="messageHistory" class=" lg:hidden">

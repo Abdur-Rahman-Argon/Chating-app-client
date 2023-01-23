@@ -19,7 +19,7 @@ const GroupMessageContainer = () => {
     refetch,
   } = useQuery("groupMessage", () =>
     fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/getGroupMessages/${groupConversationId}`
+      `${process.env.REACT_APP_PRO_URL}/getGroupMessages/${groupConversationId}`
     ).then((res) => res.json())
   );
 

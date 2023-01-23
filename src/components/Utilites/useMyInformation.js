@@ -10,7 +10,7 @@ const useMyInformation = () => {
   useEffect(() => {
     const email = user?.email;
 
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/user/${email}`)
+    fetch(`${process.env.REACT_APP_PRO_URL}/user/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyData(data);

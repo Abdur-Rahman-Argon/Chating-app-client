@@ -18,7 +18,7 @@ const MessageHistory = () => {
   //   error,
   //   refetch,
   // } = useQuery("conversion", () =>
-  //   fetch(`https://ancient-eyrie-83116.herokuapp.com/getConversation/${myData?._id}`).then((res) =>
+  //   fetch(`${process.env.REACT_APP_PRO_URL}/getConversation/${myData?._id}`).then((res) =>
   //     res.json()
   //   )
   // );

@@ -8,7 +8,7 @@ const UpdateContact = ({ myInfo, setUpAddress }) => {
   const [phone, setPhone] = useState(myInfo?.contact?.phoneNumber);
 
   const updateContact = () => {
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/contact/${myInfo._id}`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/contact/${myInfo._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

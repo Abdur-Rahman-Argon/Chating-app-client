@@ -10,7 +10,7 @@ const useMyBlog = () => {
   useEffect(() => {
     const email = user?.email;
 
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/MyPost/${email}`)
+    fetch(`${process.env.REACT_APP_PRO_URL}/MyPost/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyBlog(data);

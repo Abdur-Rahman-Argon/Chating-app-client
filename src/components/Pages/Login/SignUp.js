@@ -94,7 +94,7 @@ const SignUp = () => {
         photoURL: imageUrl,
       });
 
-      await fetch(`https://ancient-eyrie-83116.herokuapp.com/users/${email}`, {
+      await fetch(`${process.env.REACT_APP_PRO_URL}/users/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

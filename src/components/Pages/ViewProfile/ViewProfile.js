@@ -19,9 +19,9 @@ const ViewProfile = () => {
     error,
     refetch,
   } = useQuery("myInfo", () =>
-    fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/viewUser/${userEmail}`
-    ).then((res) => res.json())
+    fetch(`${process.env.REACT_APP_PRO_URL}/viewUser/${userEmail}`).then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading || loading) {

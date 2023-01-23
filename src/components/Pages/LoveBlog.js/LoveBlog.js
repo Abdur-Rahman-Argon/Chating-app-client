@@ -41,7 +41,7 @@ const LoveBlog = ({ post, refetch }) => {
       photoURL: user.photoURL,
       Comment: e.target.talk.value,
     };
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/commentAdd/${post?._id}`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/commentAdd/${post?._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

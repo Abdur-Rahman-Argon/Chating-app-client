@@ -24,7 +24,7 @@ const GroupHistory = () => {
   //   refetch,
   // } = useQuery("groupConversion", () =>
   //   fetch(
-  //     `https://ancient-eyrie-83116.herokuapp.com/getGroupConversation/${myData?._id}`
+  //     `${process.env.REACT_APP_PRO_URL}/getGroupConversation/${myData?._id}`
   //   ).then((res) => res.json())
   // );
 
@@ -59,17 +59,15 @@ const GroupHistory = () => {
       <div>
         <ul className=" border-[1px] rounded-lg py-1 my-2 text-base flex flex-row justify-around">
           <li className=" hover:bg-blue-600 rounded-md hover:text-white py-1 px-2">
-            <Link to="/groupMessages">
-              <i class="fa-solid fa-users"></i>
-            </Link>
-          </li>
-
-          <li className=" hover:bg-blue-600 rounded-md hover:text-white py-1 px-2">
             <Link to="/messageHistory">
               <i class="fa-solid fa-message"></i>
             </Link>
           </li>
-
+          <li className=" hover:bg-blue-600 rounded-md hover:text-white py-1 px-2">
+            <Link to="/groupMessages">
+              <i class="fa-solid fa-users"></i>
+            </Link>
+          </li>
           <li className=" hover:bg-blue-600 rounded-md hover:text-white py-1 px-2">
             <Link to="/">
               <i class="fa-solid fa-gear"></i>

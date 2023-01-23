@@ -29,7 +29,7 @@ const NewPost = ({ setOpen }) => {
       Share: [],
     };
 
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/createPost`, {
+    fetch(`${process.env.REACT_APP_PRO_URL}/createPost`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

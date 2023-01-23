@@ -10,7 +10,7 @@ const useGroupConversion = () => {
 
   useEffect(() => {
     fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/getGroupConversation/${myData?._id}`
+      `${process.env.REACT_APP_PRO_URL}/getGroupConversation/${myData?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

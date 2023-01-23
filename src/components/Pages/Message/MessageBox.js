@@ -24,7 +24,7 @@ const MessageBox = () => {
     refetch,
   } = useQuery("myMessage", () =>
     fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/getMessages/${conversationId}`
+      `${process.env.REACT_APP_PRO_URL}/getMessages/${conversationId}`
     ).then((res) => res.json())
   );
 

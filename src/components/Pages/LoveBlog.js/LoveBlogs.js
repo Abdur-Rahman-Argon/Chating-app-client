@@ -15,9 +15,9 @@ const LoveBlogs = () => {
     error,
     refetch,
   } = useQuery("lovePost", () =>
-    fetch(
-      `https://ancient-eyrie-83116.herokuapp.com/lovePost/${user?.email}`
-    ).then((res) => res.json())
+    fetch(`${process.env.REACT_APP_PRO_URL}/lovePost/${user?.email}`).then(
+      (res) => res.json()
+    )
   );
 
   if (loading || isLoading) {

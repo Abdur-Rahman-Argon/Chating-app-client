@@ -17,7 +17,7 @@ const Users = () => {
   //   error,
   //   refetch,
   // } = useQuery("orders", () =>
-  //   fetch(`https://ancient-eyrie-83116.herokuapp.com/users`).then((res) => res.json())
+  //   fetch(`${process.env.REACT_APP_PRO_URL}/users`).then((res) => res.json())
   // );
 
   // if (loading || isLoading) {

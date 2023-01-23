@@ -13,7 +13,7 @@ const MessageTopMenu = ({ conversationId }) => {
     const con = myConversion?.find((d) => d._id === conversationId);
     const userId = con?.member?.find((d) => d !== myData?._id);
     if (userId) {
-      fetch(`https://ancient-eyrie-83116.herokuapp.com/viewUser/${userId}`)
+      fetch(`${process.env.REACT_APP_PRO_URL}/viewUser/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           setUserData(data);

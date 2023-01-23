@@ -13,9 +13,7 @@ const AllBlog = () => {
     error,
     refetch,
   } = useQuery("allPost", () =>
-    fetch(`https://ancient-eyrie-83116.herokuapp.com/allPost`).then((res) =>
-      res.json()
-    )
+    fetch(`${process.env.REACT_APP_PRO_URL}/allPost`).then((res) => res.json())
   );
 
   if (loading || isLoading) {
