@@ -8,39 +8,22 @@ import useMyInformation from "../../Utilites/useMyInformation";
 import UseMyConversion from "../../Utilites/UseMyConversion";
 
 const User = ({ user }) => {
-  const [oldConversion, setOldConversion] = useState();
-  const navigate = useNavigate();
   const [myData] = useMyInformation();
+  const [myConversion] = UseMyConversion();
+
+  const navigate = useNavigate();
 
   const image = user?.user?.photoURL;
 
-  const [myConversion] = UseMyConversion();
+  const existConversion = myConversion?.filter((con) =>
+    con.member.find((id) => id === user?._id)
+  );
 
-  useEffect(() => {
-    myConversion?.find((con) => {
-      const conId = con?.member?.find((d) => d == user?._id);
-      if (conId) {
-        setOldConversion(con);
-        // console.log(con);
-      } else {
-        // console.log("none");
-        // setOldConversion();
-      }
-    });
-  }, [user, myConversion]);
-
-  //  const userId = item?.member?.find((d) => d !== myData?._id);
-
-  // const owner = message?.senderId !== myData?._id;
-
-  const createConversion = () => {
-    // console.log(oldConversion);
-    if (oldConversion) {
-      navigate(`/messages/messageBox/${oldConversion._id}`);
-    } else {
-      console.log("none");
-      const member = { senderId: myData._id, receiverId: user._id };
-      fetch(`http://localhost:5000/createConversation`, {
+  const createConversion = (id) => {
+    // const cData = { senderId: _id, receiverId: id };
+    const member = { senderId: myData._id, receiverId: user._id };
+    if (existConversion.length < 1) {
+      fetch(`${process.env.REACT_APP_PRO_URL}/createConversation`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -52,8 +35,33 @@ const User = ({ user }) => {
           console.log(result);
           navigate(`/messages/messageBox/${result.insertedId}`);
         });
+      console.log(member);
+    } else {
+      navigate(`/messages/messageBox/${existConversion[0]._id}`);
     }
   };
+
+  // const createConversion = () => {
+  //   // console.log(oldConversion);
+  //   if (oldConversion) {
+  //     navigate(`/messages/messageBox/${oldConversion._id}`);
+  //   } else {
+  //     console.log("none");
+  //     const member = { senderId: myData._id, receiverId: user._id };
+  //     fetch(`http://localhost:5000/createConversation`, {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(member),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((result) => {
+  //         console.log(result);
+  //         navigate(`/messages/messageBox/${result.insertedId}`);
+  //       });
+  //   }
+  // };
 
   return (
     <div className=" w-full my-5 bg-slate-50 py-2  shadow hover:bg-slate-100 hover:shadow-md rounded-3xl pl-10 md:pl-20">

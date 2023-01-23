@@ -2,9 +2,9 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
-import auth from "../../../firebase.init";
-import pic from "./../../../Images/149071.png";
 
+import pic from "./../../Images/149071.png";
+import auth from "../../firebase.init";
 const NavBar = () => {
   const [user, loading] = useAuthState(auth);
 
@@ -23,42 +23,42 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/" className=" p-2 sm:p-4">
+        <Link to="/" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-house"></i>
         </Link>
       </li>
 
       {/* <li>
-         <Link to="/"  className=" p-2 sm:p-4">
+         <Link to="/"  className=" text-center p-2 sm:p-4">
          <i class="fa-solid fa-user-group"> </i> 
         </Link>
       </li> */}
 
       <li>
-        <Link to="/all-users" className=" p-2 sm:p-4">
+        <Link to="/all-users" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-user"></i>
         </Link>
       </li>
 
       <li>
-        <Link to="/" className=" p-2 sm:p-4">
+        <Link to="/" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-bell"></i>
         </Link>
       </li>
 
       <li>
-        <Link to="/groupMessages" className=" p-2 sm:p-4">
+        <Link to="/groupMessages" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-users"></i>
         </Link>
       </li>
       <li>
-        <Link to="/messages" className=" p-2 sm:p-4">
+        <Link to="/messages" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-message"></i>
         </Link>
       </li>
 
       <li>
-        <Link to="/lovePost/" className=" p-2 sm:p-4">
+        <Link to="/lovePost/" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-heart"></i>
         </Link>
       </li>
@@ -73,7 +73,7 @@ const NavBar = () => {
   );
 
   return (
-    <div class="drawer drawer-mobile">
+    <div class="drawer drawer-mobile text-center">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <div class="flex-none lg:hidden block bg-gray-400 ">

@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import GroupHistory from "./components/Pages/GroupMessage/GroupHistory";
-import GroupMBox from "./components/Pages/GroupMessage/GroupMBox";
+
 import GroupMessageContainer from "./components/Pages/GroupMessage/GroupMessageContainer";
 import GroupMessages from "./components/Pages/GroupMessage/GroupMessages";
 import Home from "./components/Pages/Home/Home";
@@ -13,11 +12,10 @@ import MessageHistory from "./components/Pages/Message/MessageHistory";
 import Messages from "./components/Pages/Message/Messages";
 import OpenConversion from "./components/Pages/Message/OpenConversion";
 import MyProfile from "./components/Pages/Profile/MyProfile";
-import Footer from "./components/Pages/Shared/Footer";
-import NavBar from "./components/Pages/Shared/NavBar";
-import RequireAuth from "./components/Pages/Shared/RequireAuth";
 import Users from "./components/Pages/Users/Users";
 import ViewProfile from "./components/Pages/ViewProfile/ViewProfile";
+import NavBar from "./components/Shared/NavBar";
+import RequireAuth from "./components/Shared/RequireAuth";
 
 function App() {
   return (
