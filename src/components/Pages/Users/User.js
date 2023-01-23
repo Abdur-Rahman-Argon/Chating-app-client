@@ -41,47 +41,23 @@ const User = ({ user }) => {
     }
   };
 
-  // const createConversion = () => {
-  //   // console.log(oldConversion);
-  //   if (oldConversion) {
-  //     navigate(`/messages/messageBox/${oldConversion._id}`);
-  //   } else {
-  //     console.log("none");
-  //     const member = { senderId: myData._id, receiverId: user._id };
-  //     fetch(`http://localhost:5000/createConversation`, {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify(member),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((result) => {
-  //         console.log(result);
-  //         navigate(`/messages/messageBox/${result.insertedId}`);
-  //       });
-  //   }
-  // };
-
   return (
-    <div className=" w-full my-5 bg-slate-50 py-2  shadow hover:bg-slate-100 hover:shadow-md rounded-3xl pl-10 md:pl-20">
-      <button onClick={createConversion}>
-        <div className=" flex justify-left gap-5 items-center">
-          <div className=" w-16 md:w-20 ">
-            <Link to={`/view-profile/${user?._id}`}>
-              <img
-                src={image || pic}
-                alt=""
-                className=" rounded-full w-full border-[1px] "
-              />
-            </Link>
-          </div>
-          <div className=" text-left">
-            <h1 className=" font-bold"> {user?.user?.displayName}</h1>
-            <h3>{user?.email} </h3>
-          </div>
+    <div className=" w-full my-5 bg-slate-50 py-2  shadow hover:bg-slate-100 hover:shadow-md rounded-3xl ">
+      <div className=" flex flex-row justify-start pl-5 sm:pl-16 md:pl-20 pl-30 items-center gap-5">
+        <div className=" w-16 md:w-20 ">
+          <Link to={`/view-profile/${user?._id}`}>
+            <img
+              src={image || pic}
+              alt=""
+              className=" rounded-full w-full border-[1px] "
+            />
+          </Link>
         </div>
-      </button>
+        <div className=" text-left">
+          <h1 className=" font-bold"> {user?.user?.displayName}</h1>
+          <h3>{user?.email} </h3>
+        </div>
+      </div>
     </div>
   );
 };

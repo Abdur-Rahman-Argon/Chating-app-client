@@ -36,7 +36,7 @@ const Users = () => {
             <span>All Users of Chatting-App</span>
           </h1>
         </div>
-        <div className=" px-5 w-11/12 mx-auto">
+        <div className=" px-5 ">
           {users?.map((user) => (
             <User key={user._id} user={user}></User>
           ))}

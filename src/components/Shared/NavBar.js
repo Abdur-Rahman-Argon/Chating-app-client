@@ -13,7 +13,7 @@ const NavBar = () => {
   };
   const menu = (
     <>
-      <li>
+      <li title="Profile">
         <Link to="/my-profile" className=" p-0">
           <img
             src={user?.photoURL || pic}
@@ -22,7 +22,8 @@ const NavBar = () => {
           />
         </Link>
       </li>
-      <li>
+
+      <li title="Profile">
         <Link to="/" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-house"></i>
         </Link>
@@ -34,36 +35,38 @@ const NavBar = () => {
         </Link>
       </li> */}
 
-      <li>
+      <li title="Home Page">
         <Link to="/all-users" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-user"></i>
         </Link>
       </li>
 
-      <li>
+      <li title="Notification">
         <Link to="/" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-bell"></i>
         </Link>
       </li>
 
-      <li>
+      <li title="Group Messages">
         <Link to="/groupMessages" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-users"></i>
         </Link>
       </li>
-      <li>
+
+      <li title="Messages">
         <Link to="/messages" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-message"></i>
         </Link>
       </li>
 
-      <li>
-        <Link to="/lovePost/" className=" text-center p-2 sm:p-4">
+      <li title="Love Blogs">
+        <Link to="/lovePost" className=" text-center p-2 sm:p-4">
           <i class="fa-solid fa-heart"></i>
         </Link>
       </li>
+
       {user && (
-        <li>
+        <li title="Log Out Profile">
           <button onClick={logout} className=" cursor-pointer p-2 md:p-4">
             <i class="fa-sharp fa-solid fa-circle-xmark"></i>
           </button>

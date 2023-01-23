@@ -1,10 +1,17 @@
 {
   "hosting": {
+    "site": "live-chatting-application-v1",
     "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }

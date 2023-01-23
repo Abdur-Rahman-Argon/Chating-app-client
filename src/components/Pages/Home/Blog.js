@@ -5,6 +5,7 @@ import auth from "../../../firebase.init";
 import useMyInformation from "../../Utilites/useMyInformation";
 import { useEffect } from "react";
 import Comment from "./Comment";
+import { Link } from "react-router-dom";
 
 const Blog = ({ post, refetch }) => {
   const [Love, setLove] = useState(false);
@@ -86,7 +87,7 @@ const Blog = ({ post, refetch }) => {
   return (
     <div className="my-5 border-[1px] shadow-lg rounded-xl mx-2 py-1">
       <div className=" flex justify-between items-center  border-b-[1px]  px-10 w-full ">
-        <a href="/view-profile/:userId">
+        <Link to={`/view-profile/${post?.userId}`}>
           <div className=" my-2  flex justify-start gap-3 ">
             <div className=" w-8">
               <img
@@ -106,7 +107,7 @@ const Blog = ({ post, refetch }) => {
               </p>
             </div>
           </div>
-        </a>
+        </Link>
         <div>
           <button>
             <i class="fa-solid fa-ellipsis-vertical"></i>

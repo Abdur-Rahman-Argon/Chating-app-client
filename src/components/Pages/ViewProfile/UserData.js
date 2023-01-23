@@ -1,6 +1,9 @@
 import React from "react";
 
 import pic from "./../../../Images/149071.png";
+import UseMyConversion from "../../Utilites/UseMyConversion";
+import useMyInformation from "../../Utilites/useMyInformation";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UserData = ({ userInfo }) => {
   const {
@@ -13,7 +16,36 @@ const UserData = ({ userInfo }) => {
     relationShip,
   } = userInfo?.user;
 
-  console.log(userInfo);
+  const [myConversion] = UseMyConversion();
+  const [myData] = useMyInformation();
+
+  const navigate = useNavigate();
+
+  const existConversion = myConversion?.filter((con) =>
+    con.member.find((id) => id === userInfo?._id)
+  );
+
+  const createConversion = () => {
+    const member = { senderId: myData._id, receiverId: userInfo._id };
+    if (existConversion.length < 1) {
+      //
+      fetch(`${process.env.REACT_APP_PRO_URL}/createConversation`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(member),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          // console.log(result);
+          navigate(`/messages/messageBox/${result.insertedId}`);
+        });
+    } else {
+      navigate(`/messages/messageBox/${existConversion[0]._id}`);
+    }
+  };
+
   return (
     <div>
       <div className="mt-1 shadow-sm bg-slate-100 py-2 px-5 font-semibold border-[1px] ">
@@ -59,6 +91,18 @@ const UserData = ({ userInfo }) => {
             >
               {profileBio || "No any Bio"}
             </p>
+          </div>
+
+          <div className=" flex justify-around items-center gap-5">
+            <button class="border-2 font-medium py-[6px] hover:border-gray-500  hover:bg-gray-200  text-black px-2 my-1 rounded-lg border-gray-400 w-full focus:outline-0">
+              <i class="fa-solid fa-plus"></i> <span> Follow</span>
+            </button>
+            <button
+              onClick={createConversion}
+              class="border-2 font-medium py-[6px] rounded-lg border-gray-500 bg-gray-600 hover:bg-gray-700  text-white  w-full "
+            >
+              <i class="fa-solid fa-paper-plane"></i> <span>Message</span>
+            </button>
           </div>
         </div>
       </div>

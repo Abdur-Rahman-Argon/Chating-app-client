@@ -21,13 +21,17 @@ const Post = () => {
           />
         </Link>
       </div>
+
+      {/*  */}
       <div className=" w-full">
         <label onClick={() => setOpen(true)} for="newPost">
-          <h1 className=" border-[1px] py-4 w-full rounded-3xl bg-gray-200 text-sm font-medium text-slate-400 text-left px-10">
+          <h1 className=" cursor-pointer border-[1px] py-4 w-full rounded-3xl bg-gray-200 text-sm font-medium text-slate-400 text-left px-10">
             Create A New Post
           </h1>
         </label>
       </div>
+
+      {/*  */}
       {open && <NewPost setOpen={setOpen} />}
     </div>
   );
